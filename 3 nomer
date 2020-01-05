@@ -22,7 +22,7 @@ struct Mywork {
 
 
 Mywork * Plesework(Mywork* mass, int &number) {
-	
+
 	for (int i = 0; i < number; i++) {
 		if (mass[i].countVote < 500) {
 			mass[i].countVote = -1;
@@ -36,7 +36,7 @@ Mywork * Plesework(Mywork* mass, int &number) {
 	return Newmass;
 }
 
-void PrintListok(list&listok, int number) {
+void PrintListok(list<Mywork>&listok, int number) {
 	list<Mywork>::iterator ptr = listok.begin();
 	for (ptr = listok.begin(); ptr != listok.end(); ptr++) {
 		cout << ptr->str;
@@ -51,18 +51,17 @@ int main()
 	Mywork *mass = new Mywork[number];
 	list <Mywork> listok;
 	list<Mywork>::iterator ptr = listok.begin();
-	for (int i=0; i < number; i++) {
+	for (int i = 0; i < number; i++) {
 		Mywork temp;
-		cin >>temp.str >>temp.countPeople >> temp.countVote;
+		cin >> temp.str >> temp.countPeople >> temp.countVote;
 		listok.push_back(temp);
 	}
 	/*
 	for (ptr = listok.begin(); ptr != listok.end(); ptr++) {
-		cout << ptr->str;
+	cout << ptr->str;
 	}
 	*/
 	PrintListok(listok, number);
 
-    return 0;
+	return 0;
 }
-
