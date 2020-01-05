@@ -1,0 +1,68 @@
+#include "stdafx.h"
+#include <iostream>
+#include <math.h>
+#include <iomanip>
+#include <fstream> 
+#include <stdio.h>
+#include <cstdlib>
+#include <vector>
+#include <string>
+#include <list>
+
+using namespace std;
+
+
+struct Mywork {
+	string str;
+	int countPeople;
+	int countVote;
+};
+
+
+
+
+Mywork * Plesework(Mywork* mass, int &number) {
+	
+	for (int i = 0; i < number; i++) {
+		if (mass[i].countVote < 500) {
+			mass[i].countVote = -1;
+			number--;
+		}
+	}
+	Mywork *Newmass = new Mywork[number];
+	for (int i = 0; i < number; i++) {
+		if (mass[i].countVote != -1) Newmass[i].countVote = mass[i].countVote;
+	}
+	return Newmass;
+}
+
+void PrintListok(list&listok, int number) {
+	list<Mywork>::iterator ptr = listok.begin();
+	for (ptr = listok.begin(); ptr != listok.end(); ptr++) {
+		cout << ptr->str;
+	}
+}
+
+int main()
+{
+	//Mywork temp = { "Tver" ,500,100 };
+	int number;
+	cin >> number;
+	Mywork *mass = new Mywork[number];
+	list <Mywork> listok;
+	list<Mywork>::iterator ptr = listok.begin();
+	for (int i=0; i < number; i++) {
+		Mywork temp;
+		cin >>temp.str >>temp.countPeople >> temp.countVote;
+		listok.push_back(temp);
+	}
+	/*
+	for (ptr = listok.begin(); ptr != listok.end(); ptr++) {
+		cout << ptr->str;
+	}
+	*/
+	PrintListok(listok, number);
+
+    return 0;
+}
+
