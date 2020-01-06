@@ -18,6 +18,14 @@ struct Mywork {
 	int countVote;
 };
 
+void  PrintforfOur(const char*FName, int number) {
+	ifstream f2(FName, ios::binary | ios::in);
+	Mywork Tmass[10];
+	//whil
+
+
+
+}
 
 
 int main()
@@ -39,7 +47,6 @@ int main()
 	ifstream f2(FName, ios::binary | ios::in);
 	f2.read((char*)&temp, sizeof(Mywork));
 	f2.close();
-	cout << temp.str << " " << temp.countPeople << temp.countVote<<endl;
+	cout << temp.str << " " << temp.countPeople << temp.countVote << endl;
 	return 0;
 }
-
