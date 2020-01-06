@@ -1,0 +1,45 @@
+#include "stdafx.h"
+#include <iostream>
+#include <math.h>
+#include <iomanip>
+#include <fstream> 
+#include <stdio.h>
+#include <cstdlib>
+#include <vector>
+#include <string>
+#include <list>
+
+using namespace std;
+
+
+struct Mywork {
+	string str;
+	int countPeople;
+	int countVote;
+};
+
+
+
+int main()
+{
+	const char *FName = "Worker.bin";
+	int number;
+	cin >> number;
+	Mywork temp;
+	Mywork *mass = new Mywork[number];
+	for (int i = 0; i < number; i++) {
+		cin >> mass[i].str >> mass[i].countPeople >> mass[i].countVote;
+	}
+	ofstream f1(FName, ios::binary | ios::out);
+	for (int i = 0; i < number; i++) {
+		f1.write((char*)&mass[i], sizeof(mass[i]));
+	}
+	f1.close();
+
+	ifstream f2(FName, ios::binary | ios::in);
+	f2.read((char*)&temp, sizeof(Mywork));
+	f2.close();
+	cout << temp.str << " " << temp.countPeople << temp.countVote<<endl;
+	return 0;
+}
+
