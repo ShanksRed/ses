@@ -18,13 +18,16 @@ struct Mywork {
 	int countVote;
 };
 
-void  PrintforfOur(const char*FName, int number) {
+void  PrintforfOur(const char*FName) {
 	ifstream f2(FName, ios::binary | ios::in);
 	Mywork Tmass[10];
-	//whil
-
-
-
+	while (true) {
+		f2.read((char*)&Tmass[1], sizeof(Mywork));
+		cout << Tmass[1].str;
+		if (f2.peek()==EOF) break;
+		
+	}
+	f2.close();
 }
 
 
@@ -43,10 +46,12 @@ int main()
 		f1.write((char*)&mass[i], sizeof(mass[i]));
 	}
 	f1.close();
-
+    /*
 	ifstream f2(FName, ios::binary | ios::in);
 	f2.read((char*)&temp, sizeof(Mywork));
 	f2.close();
-	cout << temp.str << " " << temp.countPeople << temp.countVote << endl;
+	*/
+	//cout << temp.str << " " << temp.countPeople << temp.countVote << endl;
+	PrintforfOur("Worker.bin");
 	return 0;
 }
