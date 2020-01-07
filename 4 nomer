@@ -20,14 +20,28 @@ struct Mywork {
 
 void  PrintforfOur(const char*FName) {
 	ifstream f2(FName, ios::binary | ios::in);
-	Mywork Tmass[10];
+	Mywork Tmass[10] ;
+	Mywork tempS;
+	for (int i = 0; i < 10; i++) {
+		Tmass[i].countPeople = -1;
+		Tmass[i].countVote = 1;
+	}
 	while (true) {
-		f2.read((char*)&Tmass[1], sizeof(Mywork));
-		cout << Tmass[1].str;
-		if (f2.peek()==EOF) break;
-		
+		f2.read((char*)&tempS, sizeof(Mywork));
+		if (f2.peek() == EOF) break;
+		for (int i = 0; i < 10; i++) {
+			if ((tempS.countVote / tempS.countPeople) >= (Tmass[i].countVote / Tmass[i].countPeople))
+				continue;
+			else {
+				Tmass[i] = tempS;
+			}
+		}
 	}
 	f2.close();
+	ofstream itog("itog.txt");
+	for (int i = 0; i < 10; i++) {
+		itog << Tmass[i].str << " " << Tmass[i].countVote << " " << Tmass[i].countPeople << "\n";
+	}
 }
 
 
@@ -46,7 +60,7 @@ int main()
 		f1.write((char*)&mass[i], sizeof(mass[i]));
 	}
 	f1.close();
-    /*
+	/*
 	ifstream f2(FName, ios::binary | ios::in);
 	f2.read((char*)&temp, sizeof(Mywork));
 	f2.close();
@@ -55,3 +69,7 @@ int main()
 	PrintforfOur("Worker.bin");
 	return 0;
 }
+
+
+
+//q 1 2 w 3 4 e 5 6 r 7 8 t 9 10 y 11 12 u 13 14 i 15 16 o 17 18 p 19 20 a 21 22 s 23 24 d 25 26 f 27 28 g 29 30
