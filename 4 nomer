@@ -30,10 +30,9 @@ void  PrintforfOur(const char*FName) {
 		f2.read((char*)&tempS, sizeof(Mywork));
 		if (f2.peek() == EOF) break;
 		for (int i = 0; i < 10; i++) {
-			if ((tempS.countVote / tempS.countPeople) >= (Tmass[i].countVote / Tmass[i].countPeople))
-				continue;
-			else {
-				Tmass[i] = tempS;
+			if ((tempS.countVote / tempS.countPeople) >= (Tmass[i].countVote / Tmass[i].countPeople)) {
+				if (i == 0) Tmass[i] = tempS;
+				else swap(Tmass[i-1], Tmass[i]);
 			}
 		}
 	}
@@ -69,7 +68,3 @@ int main()
 	PrintforfOur("Worker.bin");
 	return 0;
 }
-
-
-
-//q 1 2 w 3 4 e 5 6 r 7 8 t 9 10 y 11 12 u 13 14 i 15 16 o 17 18 p 19 20 a 21 22 s 23 24 d 25 26 f 27 28 g 29 30
